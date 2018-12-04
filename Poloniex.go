@@ -170,8 +170,8 @@ func (polo *Poloniex) PlaceOrder(buy bool, currencyPair string, amount float64, 
 	data := url.Values{}
 	data.Add("nonce", fmt.Sprintf("%d", time.Now().UnixNano()))
 	data.Add("currencyPair", currencyPair)
-	data.Add("amount", fmt.Sprintf("%f", amount))
-	data.Add("rate", fmt.Sprintf("%f", rate))
+	data.Add("amount", fmt.Sprintf("%.8f", amount))
+	data.Add("rate", fmt.Sprintf("%.8f", rate))
 	if buy {
 		data.Add("command", "buy")
 		data.Add("postOnly", "1")

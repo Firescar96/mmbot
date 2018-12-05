@@ -54,11 +54,10 @@ func (plo *Poloniex) Name() string {
 
 func (polo *Poloniex) GetTicker(market string) (Ticker, error) {
 	m_, err := polo.sendGetRecv(Poloniex_API + "/public?command=returnTicker")
-	m := m_.(map[string]interface{})
-
 	if err != nil {
 		return Ticker{}, err
 	}
+	m := m_.(map[string]interface{})
 
 	ticker := GetPoloniexTickerResp{}
 	mapstructure.Decode(m[market], &ticker)

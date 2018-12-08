@@ -36,7 +36,7 @@ func main() {
 		return
 	}
 
-	ticker := time.NewTicker(time.Second * 3)
+	ticker := time.NewTicker(time.Second * 30)
 	go func() {
 		for range ticker.C {
 			for _, b := range books {
@@ -49,11 +49,19 @@ func main() {
 		}
 	}()
 
+	rpcl := new(ExchangeRPC)
+	rpcl.Books = books
+	rpcl.OffButton = make(chan bool, 1)
+	RPCListen(rpcl, 5837)
+
 	sigs := make(chan os.Signal, 1)
 
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	<-sigs
+	select {
+	case <-sigs:
+	case <-rpcl.OffButton:
+	}
 
 	ticker.Stop()
 }

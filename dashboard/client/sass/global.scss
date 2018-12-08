@@ -1,0 +1,12 @@
+//role toggle button styling
+
+@mixin colorize($bg, $txt) {
+  background-color: $bg;
+  color: $txt;
+
+  &.checked {
+    //background-color: tint( $bg, 3% );
+    background-color: $txt;
+    color: $bg;
+  }
+}

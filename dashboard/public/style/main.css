@@ -1,0 +1,29 @@
+nav {
+  position: relative;
+  display: block;
+  width: 100vw;
+  height: 100px;
+  display: flex; }
+  nav label.tgl-btn {
+    flex: 1;
+    margin: auto 5px;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    background-color: #2d2d2d;
+    color: #d2d2d2; }
+    nav label.tgl-btn.checked {
+      background-color: #d2d2d2;
+      color: #2d2d2d; }
+    nav label.tgl-btn input {
+      display: none; }
+      nav label.tgl-btn input + span {
+        position: absolute;
+        position: relative;
+        text-align: center;
+        flex: 1; }
+      nav label.tgl-btn input:checked + span {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+html {
+  width: auto; }
